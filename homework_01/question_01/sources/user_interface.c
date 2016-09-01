@@ -11,7 +11,7 @@ void show_intro()
 	printf("=========================:=========================\n");
 }
 
-void show_main_options_instructions()
+void show_main_options_instructions(CartesianTriangle triangle)
 {
 	printf("\n=================[Menu Principal]==================\n");
 	printf("Este programa realiza as seguintes operacoes:\n");
@@ -23,6 +23,8 @@ void show_main_options_instructions()
 	printf("Para selecionar uma operacao, digite o numero que\n");
 	printf("corresponde a operacao desejada. Para sair digite\n");
 	printf("o valor (q).\n");
+	printf("=========================:=========================\n");
+	printf("[a:(%lld, %lld)]\t[b:(%lld, %lld)]\t[c:(%lld, %lld)]\n", triangle.a.x, triangle.a.y, triangle.b.x, triangle.b.y, triangle.c.x, triangle.c.y);
 	printf("=========================:=========================\n");
 }
 

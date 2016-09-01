@@ -20,7 +20,7 @@ typedef enum
 
 void show_intro();
 
-void show_main_options_instructions();
+void show_main_options_instructions(CartesianTriangle triangle);
 MainOption get_main_options_input();
 void show_main_options_output(MainOption option);
 

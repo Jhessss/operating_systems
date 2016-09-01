@@ -1,6 +1,6 @@
 #include "user_interface.h"
 
-MainOption get_main_option();
+MainOption get_main_option(CartesianTriangle triangle);
 void handle_main_option(MainOption main_input, CartesianTriangle *triangle);
 
 void set_triangle(CartesianTriangle *triangle);
@@ -20,7 +20,7 @@ int main()
 	MainOption main_input = EXIT;
 	do
 	{
-		main_input = get_main_option();
+		main_input = get_main_option(triangle);
 		handle_main_option(main_input, &triangle);
 	} while(main_input != EXIT);
 
@@ -30,13 +30,13 @@ int main()
 /*
  *	Main Screen
  */
-MainOption get_main_option()
+MainOption get_main_option(CartesianTriangle triangle)
 {
 	// Validating Main User's Option Input
 	MainOption main_input = BAD_INPUT;
 	do
 	{
-		show_main_options_instructions();
+		show_main_options_instructions(triangle);
 		main_input = get_main_options_input();
 	} while(main_input == BAD_INPUT);
 
