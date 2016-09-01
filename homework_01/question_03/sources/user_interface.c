@@ -15,6 +15,7 @@ void show_end_program()
 {
 	printf("\n=========================:=========================\n");
 	printf("Pressione ENTER para encerrar o programa.\n");
+	__fpurge(stdin);
 	getchar();
 	__fpurge(stdin);
 }

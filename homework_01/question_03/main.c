@@ -43,9 +43,15 @@ int main()
 	printf("[11]\t[strcat(s1,s2):\t%s\t]\n", strcat(s1,s2));
 
 	// [12]
-	printf("[12]\t[Pode. Caso ultrapasse o buffer.]\n");
+	printf("[12]\t[Aparentemente, nao. Casos de\t]\n");
+	printf("\t[teste mostram que mesmo que\t]\n");
+	printf("\t[o buffer seja ultrapassado,\t]\n");
+	printf("\t[concatenar nao provocara erro.\t]\n");
 
 	// [13]
 	printf("[13]\t[strlen(s1):\t%zd\t\t]\n", strlen(s1));
+
+	show_end_program();
+
 	return 0;
 }
