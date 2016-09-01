@@ -1,115 +1,40 @@
+#include <string.h>
 #include "user_interface.h"
 
-MainOption get_main_option();
-void handle_main_option(MainOption main_input, CartesianTriangle *triangle);
-
-void set_triangle(CartesianTriangle *triangle);
-void show_size_of_sides(CartesianTriangle triangle);
-void show_existence(CartesianTriangle triangle);
-void show_perimeter(CartesianTriangle triangle);
-void show_area(CartesianTriangle triangle);
-
-int main()
+int main(int argc, char* argv[])
 {
 	show_intro();
 
-	// Main Loop
-	CartesianTriangle triangle;
-	triangle.a.x = triangle.a.y = triangle.b.x = triangle.b.y
-		= triangle.c.x = triangle.c.y = 0.0;
-	MainOption main_input = EXIT;
-	do
+	IntList list;
+	list.size = 0;
+	list.first = NULL;
+	list.last = NULL;
+
+	Flag flag = ASCENDING;
+
+	int i;
+	int number = 0;
+	for(i = 0; i < argc; i++)
 	{
-		main_input = get_main_option();
-		handle_main_option(main_input, &triangle);
-	} while(main_input != EXIT);
-
-	return 0;
-}
-
-/*
- *	Main Screen
- */
-MainOption get_main_option()
-{
-	// Validating Main User's Option Input
-	MainOption main_input = BAD_INPUT;
-	do
-	{
-		show_main_options_instructions();
-		main_input = get_main_options_input();
-	} while(main_input == BAD_INPUT);
-
-	// Show Option Input to the User
-	show_main_options_output(main_input);
-
-	// Return User's Option
-	return main_input;
-}
-
-/*
- *	Go to Feature chose by User
- */
-void handle_main_option(MainOption main_input, CartesianTriangle *triangle)
-{
-	switch(main_input)
-	{
-		case SET_TRIANGLE:
-			set_triangle(triangle);
-			break;
-
-		case SHOW_SIZE_OF_SIDES:
-			show_size_of_sides(*triangle);
-			break;
-
-		case SHOW_EXISTENCE:
-			show_existence(*triangle);
-			break;
-
-		case SHOW_PERIMETER:
-			show_perimeter(*triangle);
-			break;
-
-		case SHOW_AREA:
-			show_area(*triangle);
-			break;
-
-		case BAD_INPUT:
-			break;
-
-		case EXIT:
-			break;
+		if(strcmp(argv[i], "-r") == 0)
+		{
+			flag = DESCENDING;
+		}
+		else if(strcmp(argv[i], "-d") == 0)
+		{
+			flag = ASCENDING;
+		}
+		else
+		{
+			number = atoi(argv[i]);
+			if(number != 0)
+			{
+				insert(&list, number);
+			}
+		}
 	}
-}
 
-void set_triangle(CartesianTriangle *triangle)
-{
-	show_set_triangle_instructions();
-	*triangle = get_triangle_input();
-	show_set_triangle_output(*triangle);
-}
-
-void show_size_of_sides(CartesianTriangle triangle)
-{
-	show_size_of_sides_instructions();
-	double *sides_size = size_of_sides(triangle);
-	show_size_of_sides_output(sides_size);
-}
-
-void show_existence(CartesianTriangle triangle)
-{
-	show_existence_instructions();
-	show_existence_output(exists(triangle));
-}
-
-void show_perimeter(CartesianTriangle triangle)
-{
-	show_perimeter_instructions();
-	show_perimeter_output(perimeter(triangle));
-}
-
-void show_area(CartesianTriangle triangle)
-{
-	show_area_instructions();
-	show_area_output(area(triangle));
+	show_list(list, flag);
+	free_list(&list);
+	return 0;
 }

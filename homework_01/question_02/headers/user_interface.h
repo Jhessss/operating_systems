@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdio_ext.h>
 #include "int_list.h"
 
 #ifndef USER_INTERFACE_H
