@@ -40,4 +40,4 @@ tc2:
 	@./$(TARGET) < $(TEST_CASE_TWO)
 
 clean:
-	@rm -f --no-print-directory $(TARGET)
+	@rm -f $(TARGET)

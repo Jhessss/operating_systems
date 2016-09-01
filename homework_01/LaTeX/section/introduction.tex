@@ -1,0 +1,98 @@
+\section{Ambiente de Desenvolvimento}
+	\begin{itemize}
+		\item{\textbf{Sistema Operacional}: Debian Jessie (8.5)}
+		\item{\textbf{Editor de Texto}: Atom 1.0.19}
+		\item{\textbf{Compilador}: gcc 4.9.2}
+		\item{\textbf{Flags do Compilador}: -O2 -lm -Wall}
+	\end{itemize}
+
+\section{Instruções}
+	\subsection{Questão 01}
+			\begin{itemize}
+				\item{\textbf{Diretório}: question\_01}
+				\item{\textbf{Comandos do Makefile}:
+				\begin{itemize}
+					\item{\textbf{make}: compila o código, gerando o executável de nome ``q01"}
+					\item{\textbf{make clean}: remove o executável de nome ``q01"}
+				\end{itemize}}
+				\item{\textbf{Comando de Execução}: ``./q01"}
+				\item{\textbf{Operações}:
+				\begin{itemize}
+					\item{\textbf{Menu Principal}: Selecione dentre as opções descritas digitando o valor numérico correspondente. Para sair, digite ``q"}
+					\item{\textbf{1) Definir Triângulo}: Escreva 03 pares numéricos inteiros, com espaço ou ENTER entre cada valor numérico. Exemplo: ``0 0 0 10 10 0" definirá os valores para os os pontos $a$, $b$ e $c$ do triângulo:
+					\begin{align}
+						a = \ &\left(0, 0\right)& \notag \\
+						b = \ &\left(0, 10\right)& \notag \\
+						c = \ &\left(10, 0\right)& \label{points}
+					\end{align}
+					}
+					\item{\textbf{2) Tamanho dos Lados do Triângulo}: É informado a soma de cada lado do triângulo através do Teorema de Pitágoras que define o lado como a distância entre 02 pontos do triângulo. Para o exemplo da \cref{points}, o tamanho de cada lado do triângulo é:
+					\begin{align}
+						t = \ &\sqrt{{\Delta x}^{2} + {\Delta y}^{2}}& \notag \\
+						AB = \ t_{a,b} = \ &\sqrt{\left(b_{x} - a_{x} \right)^{2} + \left(b_{y} - a_{y} \right)^{2}}& \notag \\
+						= \ &\sqrt{\left(0 - 0 \right)^{2} + \left(10 - 0 \right)^{2}} = 10& \notag \\
+						BC = \ t_{b,c} = \ &\sqrt{\left(10 - 0 \right)^{2} + \left(0 - 10 \right)^{2}} \approx 14.14& \notag \\
+						CA = \ t_{c,a} = \ &\sqrt{\left(0 - 10 \right)^{2} + \left(0 - 0 \right)^{2}} = 10& \label{sides}
+					\end{align}}
+					\item{\textbf{3) Existência do Triângulo}: É informado a condição de existência de um triângulo através do Teorema da Desigualdade Triangular de Euclídes. Para o exemplo da \cref{sides}, as afirmações a seguir são verdadeiras:
+					\begin{align}
+						|AB - BC| < \ &CA < \ AB + BC& \notag \\
+						|10 - 14.14| < \ &10 < \ 10 + 14& \notag \\
+						4.14 < \ &10 < \ 24& \notag \\
+						|CA - AB| < \ &BC < \ CA + AB& \notag \\
+						0 < \ &14.14 < \ 20& \notag \\
+						|BC - CA| < \ &AB < \ BC + CA& \notag \\
+						4.14 < \ &10 < \ 2& \label{existence}
+					\end{align}}
+					\item{\textbf{4) Perímetro do Triângulo}: É informado o perímetro do triângulo através da soma de cada lado do mesmo. Se o valor desta soma for 0, certamente os pontos estão definidos na mesma posição. Para o exemplo da \cref{sides}, o perímetro do triângulo é:
+					\begin{align}
+						p = \ &AB + BC + CA& \notag \\
+						p = \ &10 + 14.14 + 10 = 34.14& \label{perimeter}
+					\end{align}}
+					\item{\textbf{5) Área do Triângulo}: É informado a área do triângulo através da Fórmula de Heron. Se o valor da área for 0, certamente os pontos não definem um triângulo. Para o exemplo da \cref{perimeter}, a área do triângulo é:
+					\begin{align}
+						s = \ &\frac{p}{2} = 17.07& \notag \\
+						a = \ &\sqrt{s(s-AB)(s-BC)(s-CA)}& \notag \\
+						= \ &\sqrt{17.07 (17.07 - 10)(17.07 - 14.14)(17.07 - 10)}& \notag \\
+						= \ &\sqrt{17.07 (7.07)(2.93)(7.07)}& \notag \\
+						= \ &\sqrt{2500}& \notag \\
+						= \ &50& \label{perimeter}
+					\end{align}}
+				\end{itemize}}
+			\end{itemize}
+
+	\subsection{Questão 02}
+			\begin{itemize}
+				\item{\textbf{Diretório}: question\_02}
+				\item{\textbf{Comandos do Makefile}:
+				\begin{itemize}
+					\item{\textbf{make}: compila o código, gerando o executável de nome ``q02"}
+					\item{\textbf{make tc1}: compila e executa o ``q02" com as entradas ``1 11 5 21 10 31 15 41 20 51 25". O valor esperado de saída é: ``1 5 10 11 15 20 21 25 31 41 51". O objetivo deste teste é avaliar o resultado da ordenação sem entradas repetidas.}
+					\item{\textbf{make tc2}: compila e executa o ``q02" com as entradas ``20 20 15 15 30 30 40 5 5 2". O valor esperado de saída é: ``2 5 5 15 15 20 20 30 30 40". O objetivo deste teste é avaliar o resultado da ordenação com entradas repetidas.}
+					\item{\textbf{make tc3}: compila e executa o ``q02" com as entradas ``-d 1 2 3 4 5 10 9 8 7 6". O valor esperado de saída é: ``1 2 3 4 5 6 7 8 9 10". O objetivo deste teste é avaliar o resultado da ordenação com a sinalização ``-d".}
+					\item{\textbf{make tc4}: compila e executa o ``q02" com as entradas ``-r 1 2 3 4 5 10 9 8 7 6". O valor esperado de saída é: ``10 9 8 7 6 5 4 3 2 1". O objetivo deste teste é avaliar o resultado da ordenação com a sinalização ``-r".}
+					\item{\textbf{make tc5}: compila e executa o ``q02" com as entradas ``-r 5 -d 2 -r 25". O valor esperado de saída é: ``25 5 2". O objetivo deste teste é avaliar o resultado da ordenação com múltiplas sinalizações. A sinalização considerada será sempre a última, neste caso: ``-r".}
+					\item{\textbf{make tc6}: compila e executa o ``q02" com as entradas ``-40 40 -30 30 -20 20 -10 10 0". O valor esperado de saída é: ``-40 -30 -20 -10 10 20 30 40". O objetivo deste teste é expor a limitação de uma entrada de valor $0$, além do resultado da ordenação com números negativos. O métdo ``atoi()" retorna $0$ caso a entrada não seja válida. Desta forma, o valor $0$ foi considerado como palavra reservada neste projeto}
+				\end{itemize}}
+				\item{\textbf{Comando de Execução}: ``./q02"}
+				\item{\textbf{Operações}:
+				\begin{itemize}
+					\item{\textbf{Ordenação}: Através dos argumentos numéricos fornecidos ao executar no terminal, é ordenado os mesmos em ordem crescente ou decrescente (caso seja inserido o sinalizador ``-r" nos argumentos) e informado o resultado de tal ordenação.}
+				\end{itemize}}
+			\end{itemize}
+
+	\subsection{Questão 03}
+			\begin{itemize}
+				\item{\textbf{Diretório}: question\_03}
+				\item{\textbf{Comandos do Makefile}:
+				\begin{itemize}
+					\item{\textbf{make}: compila o código, gerando o executável de nome ``q03"}
+					\item{\textbf{make tc1}: compila e executa o ``q03" com o arquivo de entrada ``tc1.in" com os valores ``um q". O objetivo deste teste é avaliar os resultados em um caso típico.}
+					\item{\textbf{make tc2}: compila e executa o ``q03" com o arquivo de entrada ``tc2.in" com uma string de $106$ caracteres seguido de um espaço e a letra ``q". O objetivo deste teste é avaliar os resultados em um caso atípico.}
+				\end{itemize}}
+				\item{\textbf{Comando de Execução}: ``./q03"}
+				\item{\textbf{Operações}:
+				\begin{itemize}
+					\item{\textbf{Inserção de uma \emph{string}}: Após o passo $9$ é esperado o fornecimento de uma \emph{string} para a conclusão dos passos seguintes. As respostas das perguntas descritas no arquivo-guia estão inclusos no programa.}
+				\end{itemize}}
+			\end{itemize}

@@ -24,8 +24,7 @@ all:
 	@make --always-make --no-print-directory main
 
 main:
-	$(LINK)
-	$(COMPILE)
+	@$(COMPILE)
 
 clean:
-	@rm -f --no-print-directory $(TARGET)
+	@rm -f $(TARGET)

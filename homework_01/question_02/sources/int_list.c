@@ -14,9 +14,9 @@ void insert(IntList* list, int number)
 		(*list).first = node;
 		(*list).last = node;
 	}
-	else if(number < (*list).first->number)
+	else if(number <= (*list).first->number)
 	{
-		// The New Node Data has Lesser value than the First
+		// The New Node Data has Lesser or Equals value than the First
 		// The New Node becomes the First node
 		(*list).first->previous = node;
 
@@ -42,7 +42,7 @@ void insert(IntList* list, int number)
 		IntNode* comparable = (*list).first;
 		while(comparable->next != NULL && number > comparable->number)
 		{
-			// Trace the exactly Node which the New Node Data is Lesser
+			// Trace the exactly Node which the New Node Data is Lesser or Equals
 			comparable = comparable->next;
 		}
 
