@@ -66,9 +66,7 @@ double area(CartesianTriangle triangle)
 		const int CA = 2;
 		double *sides_size = size_of_sides(triangle);
 		double s = perimeter(triangle)/2.0;
-		printf("%lf", s);
 		area = sqrt(s*(s-sides_size[AB])*(s-sides_size[BC])*(s-sides_size[CA]));
-		printf("\t\t%lf", sqrt(s*(s-sides_size[AB])*(s-sides_size[BC])*(s-sides_size[CA])));
 	}
 
 	return area;

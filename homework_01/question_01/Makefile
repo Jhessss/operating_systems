@@ -26,7 +26,6 @@ all:
 main:
 	$(LINK)
 	$(COMPILE)
-	@make --no-print-directory clean
 
 clean:
-	@rm -f $(LINKER_DIR)
+	@rm -f --no-print-directory $(TARGET)
