@@ -1,4 +1,4 @@
-NAME = trabalho02_Q01_130010219
+NAME = q02
 
 SRC_DIR = src
 INC_DIR = include
@@ -8,7 +8,7 @@ BIN_DIR = bin
 TARGET = $(BIN_DIR)/$(NAME)
 
 CC = gcc
-CFLAGS = -Wall -g
+CFLAGS = -Wall -g -lpthread
 
 SRC = ${wildcard $(SRC_DIR)/*.c}
 OBJ = ${addprefix $(OBJ_DIR)/, ${notdir ${SRC:.c=.o}}}
@@ -21,7 +21,7 @@ all:
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@echo construindo o objeto $@
-	@$(CC) -c $(CFLAGS) -I$(INC_DIR) $< -o $@ 
+	@$(CC) -c $(CFLAGS) -I$(INC_DIR) $< -o $@
 
 $(TARGET): $(OBJ)
 	@echo criando executável...
@@ -37,3 +37,4 @@ dist-clean: clean
 	@echo Limpando com dist-clean...
 	@rm -f $(TARGET)/$(NAME)
 	@rm -rf $(BIN_DIR)
+	@rm -rf $(OBJ_DIR)
