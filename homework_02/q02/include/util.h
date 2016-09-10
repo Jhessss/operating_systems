@@ -1,0 +1,8 @@
+#ifndef UTIL_H
+#define UTIL_H
+
+#define MAX_INTEGERS_NUMBER 100
+#define FIRST_NUMBER_POSITION 2
+#define INTEGERS_AMOUNT_PARAMETER_POSITION 1
+
+#endif
