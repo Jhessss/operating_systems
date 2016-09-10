@@ -1,15 +1,16 @@
 #include "benchmark.h"
 
-double get_time()
+struct timespec get_time()
 {
-	struct timeval value;
-	struct timezone zone;
-	gettimeofday(&value, &zone);
+	struct timespec current_time;
+	clock_gettime(CLOCK_MONOTONIC, &current_time);
 
-	return value.tv_sec + value.tv_usec*1e-6;
+	return current_time;
 }
 
-double get_time_elapsed(double initial_time)
+unsigned long long int get_time_elapsed(struct timespec initial_time)
 {
-	return get_time() - initial_time;
+	struct timespec final_time = get_time();
+
+	return ((final_time.tv_sec - initial_time.tv_sec)*1e+9) + ((final_time.tv_nsec - initial_time.tv_nsec));
 }

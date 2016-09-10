@@ -1,10 +1,12 @@
 ## HW01 - Q03 Makefile ##
 
 # Application Name
-TARGET := q03a
+TARGET := q03
 
 # Main Code
-MAIN := q03a.c
+PROGRAM_A := q03a.c
+PROGRAM_B := q03b.c
+PROGRAM_C := q03c.c
 
 # Headers
 HEADER_DIR := headers/
@@ -17,27 +19,37 @@ SOURCE_FILES := $(wildcard $(SOURCE_DIR)*.c)
 # Test Cases
 TEST_CASE_ONE := tc1.in
 TEST_CASE_TWO := tc2.in
+TEST_CASE_THREE := tc3.in
 
 # Compilation Settings
 ## gcc desired version: 4.9.2
-GCC_FLAGS = -O2 -lm -Wall
-COMPILE = gcc $(GCC_FLAGS) -I $(HEADER_DIR) $(HEADER_FILES) $(SOURCE_FILES) $(MAIN) -o $(TARGET)
+GCC_FLAGS := -O2 -lm -Wall
+COMPILE_A := gcc $(GCC_FLAGS) -I $(HEADER_DIR) $(HEADER_FILES) $(SOURCE_FILES) $(PROGRAM_A) -o $(TARGET)
+COMPILE_B := gcc $(GCC_FLAGS) -lpthread -I $(HEADER_DIR) $(HEADER_FILES) $(SOURCE_FILES) $(PROGRAM_B) -o $(TARGET)
+COMPILE_C := gcc $(GCC_FLAGS) -I $(HEADER_DIR) $(HEADER_FILES) $(SOURCE_FILES) $(PROGRAM_C) -o $(TARGET)
 
-.PHONY: all
+.PHONY: a
 
-all:
-	@make --always-make --no-print-directory main
+a:
+	@echo A version
+	@$(COMPILE_A)
 
-main:
-	@$(COMPILE)
+b:
+	@echo B version
+	@$(COMPILE_B)
+
+c:
+	@echo C version
+	@$(COMPILE_C)
 
 tc1:
-	@make --always-make --no-print-directory all
 	@./$(TARGET) < $(TEST_CASE_ONE)
 
 tc2:
-	@make --always-make --no-print-directory all
 	@./$(TARGET) < $(TEST_CASE_TWO)
+
+tc3:
+	@./$(TARGET) < $(TEST_CASE_THREE)
 
 clean:
 	@rm -f $(TARGET)

@@ -1,6 +1,7 @@
 #include "benchmark.h"
 #include "matrix_multiply.h"
 #include <stdio.h>
+#include <pthread.h>
 
 // Main functions
 void get_matrices();
@@ -8,6 +9,17 @@ void setup_result_matrix();
 void multiply_matrices();
 void show_result_matrix();
 void free_data();
+
+void setup_threads();
+void* thread_multiply_cell(void *parameters);
+void join_threads();
+
+// Thread Struct
+struct parameters
+{
+	int row;
+	int column;
+};
 
 // Global Variables
 struct timespec initial_time;
@@ -29,10 +41,47 @@ int main()
 
 	if(result_matrix != NULL)
 	{
+
+		// Threads Setup
+		pthread_t** threads;
+		struct parameters** params;
+
+		threads = malloc(result_matrix_size[0]*sizeof(pthread_t*));
+		params = malloc(result_matrix_size[0]*sizeof(struct parameters*));
+		for(i = 0; i < result_matrix_size[0]; i++)
+		{
+			threads[i] = malloc(result_matrix_size[1]*sizeof(pthread_t));
+			params[i] = malloc(result_matrix_size[1]*sizeof(struct parameters));
+		}
+
+		// Critical Section
 		initial_time = get_time();
-		multiply_matrices();
+
+		for(i = 0; i < result_matrix_size[0]; i++)
+		{
+			for(j = 0; j < result_matrix_size[1]; j++)
+			{
+				// Since Second Matrix is Transposed,
+				// second_matrix[j] is the column j, not row.
+				params[i][j].row = i;
+				params[i][j].column = j;
+				pthread_create(&threads[i][j], NULL, thread_multiply_cell, &params[i][j]);
+			}
+		}
+
+		for(i = 0; i < result_matrix_size[0]; i++)
+		{
+			for(j = 0; j < result_matrix_size[1]; j++)
+			{
+				pthread_join(threads[i][j], NULL);
+			}
+		}
+
 		unsigned long long int elapsed = get_time_elapsed(initial_time);
 
+		free(threads);
+		free(params);
+		// Results
 		printf("\n\nElapsed Time: %llu ns\n\n", elapsed);
 
 		show_result_matrix();
@@ -86,19 +135,6 @@ void setup_result_matrix()
 	}
 }
 
-void multiply_matrices()
-{
-	for(i = 0; i < result_matrix_size[0]; i++)
-	{
-		for(j = 0; j < result_matrix_size[1]; j++)
-		{
-			// Since Second Matrix is Transposed,
-			// second_matrix[j] is the column j, not row.
-			result_matrix[i][j] = multiply_cell(first_matrix[i], second_matrix[j], first_matrix_size[1]);
-		}
-	}
-}
-
 void show_result_matrix()
 {
 	for(i = 0; i < result_matrix_size[0]; i++)
@@ -126,4 +162,13 @@ void free_data()
 	free(second_matrix_size);
 	free(result_matrix);
 	free(result_matrix_size);
+}
+
+void* thread_multiply_cell(void *params)
+{
+	struct parameters* p = (struct parameters*) params;
+
+	result_matrix[p->row][p->column] = multiply_cell(first_matrix[p->row], second_matrix[p->column], first_matrix_size[1]);
+
+	return NULL;
 }
