@@ -13,6 +13,8 @@ void setup_threads();
 void* thread_multiply_cell(void *parameters);
 void join_threads();
 
+int get_cpu_quantity();
+
 // Thread Struct
 struct parameters
 {
@@ -40,39 +42,48 @@ int main()
 
 	if(result_matrix != NULL)
 	{
+		// Quantity of CPUs
+		int cpu_quantity = get_cpu_quantity();
 
 		// Threads Setup
-		pthread_t** threads;
-		struct parameters** params;
+		pthread_t* threads;
+		struct parameters* params;
 
-		threads = malloc(result_matrix_size[0]*sizeof(pthread_t*));
-		params = malloc(result_matrix_size[0]*sizeof(struct parameters*));
-		for(i = 0; i < result_matrix_size[0]; i++)
-		{
-			threads[i] = malloc(result_matrix_size[1]*sizeof(pthread_t));
-			params[i] = malloc(result_matrix_size[1]*sizeof(struct parameters));
-		}
+		threads = malloc(cpu_quantity*sizeof(pthread_t));
+		params = malloc(cpu_quantity*sizeof(struct parameters));
 
 		initial_time = get_time();
 
 		// Critical Section
+		int total_active_threads = 0;
+		int threads_activated = 0;
+		int total_operations = result_matrix_size[0]*result_matrix_size[1];
 		for(i = 0; i < result_matrix_size[0]; i++)
 		{
 			for(j = 0; j < result_matrix_size[1]; j++)
 			{
-				// Since Second Matrix is Transposed,
-				// second_matrix[j] is the column j, not row.
-				params[i][j].row = i;
-				params[i][j].column = j;
-				pthread_create(&threads[i][j], NULL, thread_multiply_cell, &params[i][j]);
-			}
-		}
+				if(total_active_threads < cpu_quantity
+					&& threads_activated < total_operations)
+				{
+					// Since Second Matrix is Transposed,
+					// second_matrix[j] is the column j, not row.
+					params[total_active_threads].row = i;
+					params[total_active_threads].column = j;
+					pthread_create(&threads[total_active_threads], NULL,
+						thread_multiply_cell, &params[total_active_threads]);
 
-		for(i = 0; i < result_matrix_size[0]; i++)
-		{
-			for(j = 0; j < result_matrix_size[1]; j++)
-			{
-				pthread_join(threads[i][j], NULL);
+					total_active_threads++;
+					threads_activated++;
+				}
+
+				if(total_active_threads >= cpu_quantity || threads_activated >= total_operations)
+				{
+					while(total_active_threads > 0)
+					{
+						pthread_join(threads[total_active_threads-1], NULL);
+						total_active_threads--;
+					}
+				}
 			}
 		}
 
@@ -171,4 +182,17 @@ void* thread_multiply_cell(void *params)
 	result_matrix[p->row][p->column] = multiply_cell(first_matrix[p->row], second_matrix[p->column], first_matrix_size[1]);
 
 	return NULL;
+}
+
+int get_cpu_quantity()
+{
+	int cpu_quantity = 0;
+
+	FILE* file = popen("cat /proc/cpuinfo | grep -c processor", "r");
+
+	fscanf(file, "%d", &cpu_quantity);
+
+	pclose(file);
+
+	return cpu_quantity;
 }
