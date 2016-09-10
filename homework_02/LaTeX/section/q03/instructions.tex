@@ -1,0 +1,121 @@
+\begin{itemize}
+	\item{\textbf{Diretório}: question\_03}
+	\item{\textbf{Comandos do Makefile}:
+	\begin{itemize}
+		\item{\textbf{make}: compila o código \texttt{q03a.c}, gerando o executável de nome \texttt{q03}}
+		\item{\textbf{make a}: compila o código \texttt{q03a.c}, gerando o executável de nome \texttt{q03}}
+		\item{\textbf{make b}: compila o código \texttt{q03b.c}, gerando o executável de nome \texttt{q03}}
+		\item{\textbf{make c}: compila o código \texttt{q03c.c}, gerando o executável de nome \texttt{q03}}
+		\item{\textbf{make tc1}: executa o \texttt{q03} com a entrada \texttt{tc1.in}, que consiste em uma matriz $A_{(2,3)}$ e outra matriz $B_{(3,2)}$. O valor esperado de saída é uma matriz $R_{(2,2)}$, além do tempo utilizado para realizar a operação (em nanossegundos - $\text{ns}$). A operação pode ser vista a seguir:
+		\begin{align}
+			A = \ &
+			\begin{bmatrix}
+				10 & 20 & 30 \\
+				40 & 50 & 60
+			\end{bmatrix}
+			& \notag \\
+			B = \ &
+			\begin{bmatrix}
+				10 & 20 \\
+				30 & 40 \\
+				50 & 60
+			\end{bmatrix}
+			& \notag \\
+			R = \ & A \times B = \
+			\begin{bmatrix}
+				2200 & 2800 \\
+				4900 & 6400
+			\end{bmatrix}
+			& \label{eq:q03_tc1}
+		\end{align}
+		}
+		\item{\textbf{make tc2}: executa o \texttt{q03} com a entrada \texttt{tc2.in}, que consiste em uma matriz $A_{(5,2)}$ e outra matriz $B_{(2,3)}$. O valor esperado de saída é uma matriz $R_{(5,3)}$, além do tempo utilizado para realizar a operação (em nanossegundos - $\text{ns}$). A operação pode ser vista a seguir:
+		\begin{align}
+			A = \ &
+			\begin{bmatrix}
+				1 & 2 \\
+				2 & 4 \\
+				4 & 8 \\
+				8 & 16 \\
+				16 & 32
+			\end{bmatrix}
+			& \notag \\
+			B = \ &
+			\begin{bmatrix}
+				1 & 3 & 6 \\
+				2 & 6 & 9
+			\end{bmatrix}
+			& \notag \\
+			R = \ & A \times B = \
+			\begin{bmatrix}
+				5 & 15 & 24 \\
+				10 & 30 & 48 \\
+				20 & 60 & 96 \\
+				40 & 120 & 192 \\
+				80 & 240 & 384
+			\end{bmatrix}
+			& \label{eq:q03_tc2}
+		\end{align}
+		}
+		\item{\textbf{make tc3}: executa o \texttt{q03} com a entrada \texttt{tc3.in}, que consiste em uma matriz $A_{(10,5)}$ e outra matriz $B_{(5,8)}$. O valor esperado de saída é uma matriz $R_{(10,8)}$, além do tempo utilizado para realizar a operação (em nanossegundos - $\text{ns}$). A operação pode ser vista a seguir:
+		\begin{align}
+			A = \ &
+			\begin{bmatrix}
+				1 & 2 & 3 & 4 & 5 \\
+				6 & 7 & 8 & 9 & 0 \\
+				1 & 2 & 3 & 4 & 5 \\
+				6 & 7 & 8 & 9 & 0 \\
+				0 & 9 & 8 & 7 & 6 \\
+				5 & 4 & 3 & 2 & 1 \\
+				0 & 9 & 8 & 7 & 6 \\
+				5 & 4 & 3 & 2 & 1 \\
+				0 & 1 & 9 & 2 & 8 \\
+				3 & 7 & 4 & 6 & 5
+			\end{bmatrix}
+			& \notag \\
+			B = \ &
+			\begin{bmatrix}
+				1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
+				8 & 7 & 6 & 5 & 4 & 3 & 2 & 1 \\
+				8 & 1 & 7 & 2 & 6 & 3 & 5 & 4 \\
+				8 & 7 & 6 & 5 & 4 & 3 & 2 & 1 \\
+				1 & 2 & 3 & 4 & 5 & 6 & 7 & 8
+			\end{bmatrix}
+			& \notag \\
+			R = \ & A \times B & \notag \\
+			= \ &
+			\begin{bmatrix}
+				78 & 57 & 75 & 60 & 72 & 63 & 69 & 66 \\
+				198 & 132 & 170 & 120 & 142 & 108 & 114 & 96 \\
+				78 & 57 & 75 & 60 & 72 & 63 & 69 & 66 \\
+				198 & 132 & 170 & 120 & 142 & 108 & 114 & 96 \\
+				198 & 132 & 170 & 120 & 142 & 108 & 114 & 96 \\
+				78 & 57 & 75 & 60 & 72 & 63 & 69 & 66 \\
+				198 & 132 & 170 & 120 & 142 & 108 & 114 & 96 \\
+				78 & 57 & 75 & 60 & 72 & 63 & 69 & 66 \\
+				104 & 46 & 105 & 65 & 106 & 84 & 107 & 103 \\
+				144 & 111 & 130 & 105 & 116 & 99 & 102 & 93
+			\end{bmatrix}
+			& \label{eq:q03_tc3}
+		\end{align}
+		}
+		\item{\textbf{make clean}: remove o executável de nome \texttt{q03}}
+	\end{itemize}}
+	\item{\textbf{Comando de Execução}: \texttt{./q03}}
+	\item{\textbf{Operações}:
+		\begin{itemize}
+			\item{\textbf{Entrada de duas Matrizes}: Existente nas três versões de código, a entrada é recebida da seguinte forma:
+			\begin{enumerate}
+				\item{Dois números inteiros devem ser fornecidos. Tais números são utilizados para definir o tamanho da primeira matriz, $A_{(n,m)}$. O primeiro valor é a quantidade de linhas ($n$) e o segundo valor é a quantidade de colunas ($m$) da matriz $A$;}
+				\item{Com o tamanho da matriz $A$ definido, devem ser fornecidos $n \times m$ números inteiros. Tais números são os valores contidos na matriz $A$;}
+				\item{Com a matriz $A$ definida, dois outros números inteiros devem ser fornecidos. Tais números são utilizados para definir o tamanho da segunda matriz, $B_{(p,q)}$. O primeiro valor é a quantidade de linhas ($p$) e o segundo valor é a quantidade de colunas ($q$) da matriz $B$;}
+				\item{Com o tamanho da matriz $B$ definido, devem ser fornecidos $p \times q$ números inteiros. Tais números são os valores contidos na matriz $B$.}
+			\end{enumerate}}
+			\item{\textbf{Cálculo do Tempo Utilizado para Executar o Algoritmo de Multiplicação de Matrizes}: Existente nas três versões de código. É registrado o tempo inicial logo antes do primeiro cálculo da célula da matriz resultante. Após o término do cálculo da última matriz resultante, é registrado a diferença do tempo atual pelo tempo inicial.}
+			\item{\textbf{Multiplicação de Matrizes com Algoritmo Sequencial}: Existente na versão \texttt{q03a}, o algoritmo de multiplicação é realizado sequencialmente, utilizando apenas de estruturas de repetição para calcular cada célula da matriz resultante.}
+			\item{\textbf{Multiplicação de Matrizes com Algoritmo Concorrente, Sem Restrição do Número Total de \emph{threads}}: Existente na versão \texttt{q03b}, o algoritmo de multiplicação é realizado concorrentemente, utilizando de um número total de \emph{threads} equivalente ao número total de células da matriz resultante.}
+			\item{\textbf{Multiplicação de Matrizes com Algoritmo Concorrente, Com Restrição do Número Total de \emph{threads}}: Existente na versão \texttt{q03c}, o algoritmo de multiplicação é realizado concorrentemente, utilizando de quantitades necessárias de lotes de \emph{threads}, cada lote possui um número máximo de \emph{threads} equivalente ao número total de processadores no sistema computacional em execução.}
+			\item{\textbf{Informação de Resultados}: Existente nas três versões de código. É informado o tempo utilizado para executar o algoritmo de multiplicação de matrizes em nanossegundos e a matriz resultante. Será informado \texttt{Invalid Input.} caso a quantitade de colunas da primeira matriz seja diferente da quantidade de linhas da segunda matriz. Entradas de valores inesperados provocarão erros.}
+		\end{itemize}
+	}
+\end{itemize}

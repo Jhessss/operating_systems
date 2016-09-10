@@ -23,10 +23,10 @@ TEST_CASE_THREE := tc3.in
 
 # Compilation Settings
 ## gcc desired version: 4.9.2
-GCC_FLAGS := -O2 -lm -Wall
+GCC_FLAGS := -O2 -Wall -lpthread
 COMPILE_A := gcc $(GCC_FLAGS) -I $(HEADER_DIR) $(HEADER_FILES) $(SOURCE_FILES) $(PROGRAM_A) -o $(TARGET)
-COMPILE_B := gcc $(GCC_FLAGS) -lpthread -I $(HEADER_DIR) $(HEADER_FILES) $(SOURCE_FILES) $(PROGRAM_B) -o $(TARGET)
-COMPILE_C := gcc $(GCC_FLAGS) -lpthread -I $(HEADER_DIR) $(HEADER_FILES) $(SOURCE_FILES) $(PROGRAM_C) -o $(TARGET)
+COMPILE_B := gcc $(GCC_FLAGS) -I $(HEADER_DIR) $(HEADER_FILES) $(SOURCE_FILES) $(PROGRAM_B) -o $(TARGET)
+COMPILE_C := gcc $(GCC_FLAGS) -I $(HEADER_DIR) $(HEADER_FILES) $(SOURCE_FILES) $(PROGRAM_C) -o $(TARGET)
 
 .PHONY: a
 
