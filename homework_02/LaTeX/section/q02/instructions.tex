@@ -3,12 +3,14 @@
 	\item{\textbf{Comandos do Makefile}:
 	\begin{itemize}
 		\item{\textbf{make}: compila o código, gerando o executável de nome \texttt{q02}}
-		\item{\textbf{make dist-clean}: remove o executável de nome \texttt{q02}}
+		\item{\textbf{make sequential}: compila o código sequential.c, gerando o executável de nome \texttt{sequential_q02}}
+		\item{\textbf{make dist-clean}: remove o executável de nome \texttt{q02} e \texttt{sequential_q02}}
 	\end{itemize}}
-	\item{\textbf{Comando de Execução}: \texttt{bin/q02}}
+	\item{\textbf{Comando de Execução}: \texttt{bin/q02} e \texttt{bin/sequential_q02}}
 	\item{\textbf{Operações}:
 	\begin{itemize}
 		\item{\textbf{Entrada do vetor de inteiros}: Como parâmetro do programa, deverá ser enviado o número $n$ que indique a quantidade total de inteiros, e em seguida os $n$ números que irão preencher o vetor $V$.}
+		\item{\textbf{Sequencial}: caso essa seja a versão sequencial do programa, ele já irá realizar a programação e mostrar os resultados. Caso contrário, ele continuará nos passos a seguir.}
 		\item{\textbf{Preenchimento do Vetor $W$}: São disparadas então $n$ \emph{threads} que irão preencher o vetor $W$ de $n$ posições com o número $1$ em todas elas.}
 		\item{\textbf{Comparação dos números}: Em seguida são disparadas $\frac{n(n-1)}{2}$ \emph{threads} que irão fazer as comparações. A thread $T_{(i,j)}$ irá comparar os números $v_{i}$ e $v_{j}$ e escrever $0$ na posição do vetor $W$ correspodente, isto é, se $v_{i} < v_{j}$, $W_{i} = 0$, e caso contrário $W_{j} = 0$.}
 		\item{\textbf{Verificação do maior número}: Na terceira etapa são disparadas $n$ \emph{threads} que irão ler o vetor $W$. Caso a \emph{thread} identifique o valor $0$, ela irá se fechar automaticamente. Caso seja encontrado o valor $1$ ela imprime a posição e o valor do maior número.}
