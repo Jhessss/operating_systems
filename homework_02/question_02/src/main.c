@@ -5,6 +5,7 @@
 #include "arguments_handler.h"
 #include "vector_handler.h"
 #include "thread_handler.h"
+#include "benchmark.h"
 
 int main(int argc, char* argv[])
 {
@@ -17,11 +18,14 @@ int main(int argc, char* argv[])
 	struct thread_w_arguments* thread_w_args;
 	struct second_step_threads_arguments* second_threads_args;
 
+	struct timespec initial_time;
+
 	if(argc < 3) {
 		printf("número de argumentos inválido!\n");
 		return 0;
 	}
 	else {
+		initial_time = get_time();
 		integers_amount = find_integers_amount(argc, argv);
 		second_step_threads_amount = (integers_amount * (integers_amount - 1) / 2);
 		vector_v = tranlaste_arguments_to_vector(integers_amount, argv);
@@ -52,6 +56,10 @@ int main(int argc, char* argv[])
 
 	create_third_step_threads(threads_w, thread_w_args, vector_v, vector_w, integers_amount);
 	join_threads(threads_w, integers_amount);
+
+	unsigned long long int elapsed = get_time_elapsed(initial_time);
+
+	printf("\n\nElapsed time: %llu ns \n\n", elapsed);
 
 	free(threads_w);
 	free(thread_w_args);
