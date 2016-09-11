@@ -22,7 +22,6 @@ int main ()
 
 	alarm_child = fork();
 	if (alarm_child != 0) {
-		printf("Id do pai: %d\n", (int) getpid());
 		pause();
 	}
 	else {
@@ -31,7 +30,6 @@ int main ()
 		exit(0);
 	}
 	if(flag) {
-		printf ("ID do processo disparando o alarme %d\n", (int) getpid ());
 		printf("Alarme disparado!\n");
 	}
 	return 0;

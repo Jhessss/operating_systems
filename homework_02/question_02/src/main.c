@@ -24,8 +24,6 @@ int main(int argc, char* argv[])
 	else {
 		integers_amount = find_integers_amount(argc, argv);
 		second_step_threads_amount = (integers_amount * (integers_amount - 1) / 2);
-		printf("integers_amount: %d\n", integers_amount);
-		printf("Fator etapa 2: %d\n", second_step_threads_amount);
 		vector_v = tranlaste_arguments_to_vector(integers_amount, argv);
 	}
 

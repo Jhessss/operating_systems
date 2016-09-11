@@ -3,8 +3,14 @@
 	\item{\textbf{Comandos do Makefile}:
 	\begin{itemize}
 		\item{\textbf{make}: compila o código, gerando o executável de nome \texttt{q02}}
-		\item{\textbf{make clean}: remove o executável de nome \texttt{q02}}
+		\item{\textbf{make dist-clean}: remove o executável de nome \texttt{q02}}
 	\end{itemize}}
-	\item{\textbf{Comando de Execução}: \texttt{./q02}}
-	\item{\textbf{Operações}: $<IAGO-OPERATIONS>$}
+	\item{\textbf{Comando de Execução}: \texttt{bin/q02}}
+	\item{\textbf{Operações}: 
+	\begin{itemize}
+		\item{\textbf{Entrada do vetor de inteiros}: Como parâmetro do programa, deverá ser enviado o número n que indique a quantidade total de inteiros, e em seguida os n números que irão preencher o vetor V.}
+		\item{\textbf{Preenchimento do Vetor W}: São disparadas então n threads que irão preencher o vetor w de n posições com o número 1 em todas elas.}
+		\item{\textbf{Comparação dos números}: Em seguida são disparadas n * (n-1) / 2 threads que irão fazer as comparações. A thread Tij iŕa comparar os números v[i] e v[j] e escrever um 0 na posição do vetor W correspodente, isto é, se i < j W[i] = 0, e caso contrário W[j] = 0}
+		\item{\textbf{Verificação do maior número}: Na terceira etapa são disparadas n threads que irão ler o vetor w. Caso a thread identifique o valor 0 ela irá se fechar automaticamente. Caso seja encontrado o valor 1 ela imprime a posição e o valor do maior número.}
+	\end{itemize}}
 \end{itemize}
